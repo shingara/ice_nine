@@ -26,5 +26,6 @@ group :metrics do
 
   platforms :rbx do
     gem 'pelusa', '~> 0.2.0'
+    gem 'mutant', '~> 0.1.1'
   end
 end
