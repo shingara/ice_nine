@@ -1,17 +1,7 @@
 # encoding: utf-8
 
 begin
-  begin
-    require 'rspec/core/rake_task'
-  rescue LoadError
-    require 'spec/rake/spectask'
-
-    module RSpec
-      module Core
-        RakeTask = Spec::Rake::SpecTask
-      end
-    end
-  end
+  require 'rspec/core/rake_task'
 
   desc 'Run all specs'
   task :spec => %w[ spec:unit spec:integration ]
