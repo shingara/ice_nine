@@ -15,10 +15,8 @@ group :metrics do
   gem 'yardstick',   '~> 0.4.0'
 
   platforms :mri_18, :rbx do
-    gem 'heckle',    '~> 1.4.3'
-    gem 'json',      '~> 1.6.5'
-    gem 'mspec',     '~> 1.5.17'
-    gem 'ruby2ruby', '=  1.2.2'
+    gem 'json',  '~> 1.6.5'
+    gem 'mspec', '~> 1.5.17'
   end
 
   platforms :mri_18 do
