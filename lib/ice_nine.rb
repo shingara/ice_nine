@@ -1,5 +1,7 @@
 # encoding: utf-8
 
+require 'set'
+
 require 'ice_nine/freezer'
 require 'ice_nine/freezer/array'
 require 'ice_nine/freezer/hash'
@@ -23,42 +25,40 @@ module IceNine
   #
   # @api public
   def self.deep_freeze(object)
-    recursion_guard(recursion_guard_key(object)) do
+    recursion_guard(object.object_id) do
       Freezer[object.class].deep_freeze(object)
     end
   end
 
   # Guard the system from recursive freezing
   #
-  # @param [String] key
+  # @param [Integer] object_id
   #
-  # @return [undefined]
+  # @return [Object]
   #
   # @api private
-  def self.recursion_guard(key)
-    thread = Thread.current
-    return if thread[key]
+  def self.recursion_guard(object_id)
+    objects = current_objects
+    return if objects.include?(object_id)
     begin
-      thread[key] = true
+      objects << object_id
       yield
     ensure
-      thread[key] = nil
+      objects.delete(object_id)
     end
   end
 
   private_class_method :recursion_guard
 
-  # Create a unique key to guard against recursively deep freezing the object
+  # The current objects being frozen in this thread
   #
-  # @param [#object_id]
-  #
-  # @return [String]
+  # @return [Set<Integer>]
   #
   # @api private
-  def self.recursion_guard_key(object)
-    "__ice_nine_deep_freeze_#{object.object_id}"
+  def self.current_objects
+    Thread.current[:__ice_nine_current_objects] ||= Set.new
   end
 
-  private_class_method :recursion_guard_key
+  private_class_method :current_objects
 
 end # module IceNine
