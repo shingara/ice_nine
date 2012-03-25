@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-source :rubygems
+source 'https://rubygems.org'
 
 gemspec
 
@@ -13,6 +13,12 @@ group :metrics do
   gem 'reek',        '~> 1.2.8', :git => 'git://github.com/dkubb/reek.git'
   gem 'roodi',       '~> 2.1.0'
   gem 'yardstick',   '~> 0.4.0'
+  gem 'tailor',      '~> 0.1.5'
+
+  platforms :mri_19 do
+    gem 'cane',      '~> 1.1.0'
+    gem 'simplecov', '~> 0.6.1'
+  end
 
   platforms :mri_18, :rbx do
     gem 'json',  '~> 1.6.5'
