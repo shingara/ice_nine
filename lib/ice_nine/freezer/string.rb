@@ -3,8 +3,8 @@
 module IceNine
   class Freezer
 
-    # A freezer class for handling Struct objects
-    class Struct < Enumerable; end
+    # A freezer class for handling String objects
+    class String < Object; end
 
   end # class Freezer
 end # module IceNine

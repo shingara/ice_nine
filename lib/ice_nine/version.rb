@@ -1,5 +1,8 @@
 # encoding: utf-8
 
 module IceNine
-  VERSION = '0.1.0'
-end
+
+  # Current gem version
+  VERSION = '0.3.0'
+
+end # module IceNine
