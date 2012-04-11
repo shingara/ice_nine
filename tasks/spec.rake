@@ -27,7 +27,7 @@ begin
     RSpec::Core::RakeTask.new(:coverage) do |t|
       t.rcov      = true
       t.pattern   = 'spec/unit/**/*_spec.rb'
-      t.rcov_opts = File.read('spec/rcov.opts').split(/\s+/)
+      t.rcov_opts = File.read('.rcov').split(/\s+/)
     end
   else
     desc 'Generate code coverage'
