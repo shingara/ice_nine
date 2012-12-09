@@ -42,4 +42,12 @@ module IceNine
     end
   end
 
+  def self.no_freeze(mods)
+    Array(mods).each do |mod|
+      module_eval %{
+      class IceNine::Freezer::#{mod} < IceNine::Freezer::NoFreeze ; end
+      }
+    end
+  end
+
 end # module IceNine
